@@ -21,7 +21,7 @@ from homeassistant.helpers.config_entry_oauth2_flow import (
 from homeassistant.helpers.typing import ConfigType
 
 from . import config_flow
-from .browse_media import async_browse_media
+from .browse_media import async_browse_media, async_get_media_browser_root_object
 from .const import (
     DATA_SPOTIFY_CLIENT,
     DATA_SPOTIFY_ME,
@@ -48,6 +48,7 @@ PLATFORMS = [Platform.MEDIA_PLAYER]
 
 __all__ = [
     "async_browse_media",
+    "async_get_media_browser_root_object",
     "DOMAIN",
     "is_spotify_media_type",
     "resolve_spotify_media_type",
