@@ -102,10 +102,11 @@ virtualization/vagrant/.vagrant
 virtualization/vagrant/config
 
 # Visual Studio Code
-.vscode/*
-!.vscode/cSpell.json
-!.vscode/extensions.json
-!.vscode/tasks.json
+# TODO(wac): Comment out due to tooling conflict issues.
+#.vscode/*
+#!.vscode/cSpell.json
+#!.vscode/extensions.json
+#!.vscode/tasks.json
 .env
 
 # Built docs
