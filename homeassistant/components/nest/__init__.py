@@ -48,6 +48,8 @@ from homeassistant.helpers.typing import ConfigType
 
 from . import api, config_flow
 from .const import (
+    CONF_API_HOSTNAME,
+    CONF_OAUTH_HOSTNAME,
     CONF_PROJECT_ID,
     CONF_SUBSCRIBER_ID,
     DATA_NEST_CONFIG,
@@ -82,6 +84,9 @@ CONFIG_SCHEMA = vol.Schema(
                 # Required to use the new API (optional for compatibility)
                 vol.Optional(CONF_PROJECT_ID): cv.string,
                 vol.Optional(CONF_SUBSCRIBER_ID): cv.string,
+                # Overrides for pre-release testing
+                vol.Optional(CONF_API_HOSTNAME): cv.string,
+                vol.Optional(CONF_OAUTH_HOSTNAME): cv.string,
                 # Config that only currently works on the old API
                 vol.Optional(CONF_STRUCTURE): vol.All(cv.ensure_list, [cv.string]),
                 vol.Optional(CONF_SENSORS): SENSOR_SCHEMA,

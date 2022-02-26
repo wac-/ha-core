@@ -56,10 +56,12 @@ from homeassistant.util.json import load_json
 from . import api, auth
 from .const import (
     CONF_CLOUD_PROJECT_ID,
+    CONF_OAUTH_HOSTNAME,
     CONF_PROJECT_ID,
     CONF_SUBSCRIBER_ID,
     DATA_NEST_CONFIG,
     DATA_SDM,
+    DEFAULT_OAUTH_HOSTNAME,
     DOMAIN,
     OOB_REDIRECT_URI,
     SDM_SCOPES,
@@ -133,6 +135,7 @@ def register_flow_implementation_from_config(
             config[DOMAIN][CONF_CLIENT_ID],
             config[DOMAIN][CONF_CLIENT_SECRET],
             config[DOMAIN][CONF_PROJECT_ID],
+            config[DOMAIN].get(CONF_OAUTH_HOSTNAME, DEFAULT_OAUTH_HOSTNAME),
         ),
     )
     NestFlowHandler.async_register_implementation(
@@ -142,6 +145,7 @@ def register_flow_implementation_from_config(
             config[DOMAIN][CONF_CLIENT_ID],
             config[DOMAIN][CONF_CLIENT_SECRET],
             config[DOMAIN][CONF_PROJECT_ID],
+            config[DOMAIN].get(CONF_OAUTH_HOSTNAME, DEFAULT_OAUTH_HOSTNAME),
         ),
     )
 

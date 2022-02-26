@@ -17,7 +17,12 @@ class WebAuth(config_entry_oauth2_flow.LocalOAuth2Implementation):
     name = "OAuth for Web"
 
     def __init__(
-        self, hass: HomeAssistant, client_id: str, client_secret: str, project_id: str
+        self,
+        hass: HomeAssistant,
+        client_id: str,
+        client_secret: str,
+        project_id: str,
+        oauth_hostname: str,
     ) -> None:
         """Initialize WebAuth."""
         super().__init__(
@@ -25,7 +30,9 @@ class WebAuth(config_entry_oauth2_flow.LocalOAuth2Implementation):
             WEB_AUTH_DOMAIN,
             client_id,
             client_secret,
-            OAUTH2_AUTHORIZE.format(project_id=project_id),
+            OAUTH2_AUTHORIZE.format(
+                oauth_hostname=oauth_hostname, project_id=project_id
+            ),
             OAUTH2_TOKEN,
         )
 
@@ -36,7 +43,12 @@ class InstalledAppAuth(config_entry_oauth2_flow.LocalOAuth2Implementation):
     name = "OAuth for Apps"
 
     def __init__(
-        self, hass: HomeAssistant, client_id: str, client_secret: str, project_id: str
+        self,
+        hass: HomeAssistant,
+        client_id: str,
+        client_secret: str,
+        project_id: str,
+        oauth_hostname: str,
     ) -> None:
         """Initialize InstalledAppAuth."""
         super().__init__(
@@ -44,7 +56,9 @@ class InstalledAppAuth(config_entry_oauth2_flow.LocalOAuth2Implementation):
             INSTALLED_AUTH_DOMAIN,
             client_id,
             client_secret,
-            OAUTH2_AUTHORIZE.format(project_id=project_id),
+            OAUTH2_AUTHORIZE.format(
+                oauth_hostname=oauth_hostname, project_id=project_id
+            ),
             OAUTH2_TOKEN,
         )
 

@@ -18,9 +18,11 @@ from homeassistant.helpers import aiohttp_client, config_entry_oauth2_flow
 
 from .const import (
     API_URL,
+    CONF_API_HOSTNAME,
     CONF_PROJECT_ID,
     CONF_SUBSCRIBER_ID,
     DATA_NEST_CONFIG,
+    DEFAULT_API_HOSTNAME,
     DOMAIN,
     OAUTH2_TOKEN,
     SDM_SCOPES,
@@ -38,9 +40,10 @@ class AsyncConfigEntryAuth(AbstractAuth):
         oauth_session: config_entry_oauth2_flow.OAuth2Session,
         client_id: str,
         client_secret: str,
+        api_hostname: str,
     ) -> None:
         """Initialize Google Nest Device Access auth."""
-        super().__init__(websession, API_URL)
+        super().__init__(websession, API_URL.format(api_hostname=api_hostname))
         self._oauth_session = oauth_session
         self._client_id = client_id
         self._client_secret = client_secret
@@ -106,5 +109,6 @@ async def new_subscriber_with_impl(
         session,
         config[CONF_CLIENT_ID],
         config[CONF_CLIENT_SECRET],
+        config.get(CONF_API_HOSTNAME, DEFAULT_API_HOSTNAME),
     )
     return GoogleNestSubscriber(auth, config[CONF_PROJECT_ID], subscriber_id)
